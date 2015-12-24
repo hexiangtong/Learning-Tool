@@ -26,12 +26,14 @@ import javax.swing.JRadioButton;
 import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
 
+
 class MainFrame extends JFrame implements Serializable,Cloneable{
 
 	private static final long serialVersionUID = 8290863009353919652L;
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
-		Main.main(args);
+		//MainFrame.main(args);
+		MainFrame frameTabel = new MainFrame();
 	}
 	
 	private final JToolBar toolBarTop = new JToolBar();
@@ -62,21 +64,19 @@ class MainFrame extends JFrame implements Serializable,Cloneable{
 	private static Timer timer;
 	private static boolean isCanceled = true;
 	
-	public MainFrame(List<Word> words) { // 删除File tempFile
+	public MainFrame(List<Word> words) { 
 		this.words = words;
 		//this.tempFile = tempFile;
 		this.idx = new Index(words.size());
-		initialize();
+//		System.out.println(words.size());
+		MainFrame();
 		this.setVisible(true);
 	}
 	
 
-//	public MainFrame() {
-//		this.words = words;
-//		this.idx = new Index(words.size());
-//		initialize();
-//		this.setVisible(true);
-//	}
+	public MainFrame() {
+	}
+
 
 	public void setVisible(boolean value){
 		super.setVisible(value);
@@ -103,7 +103,7 @@ class MainFrame extends JFrame implements Serializable,Cloneable{
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public void initialize() {
+	public void MainFrame() {
 		this.setBounds(100, 100, 550, 260);
 		this.setTitle("Learning Tool");
 		this.getContentPane().setLayout(new BorderLayout(0, 0));
@@ -173,7 +173,7 @@ class MainFrame extends JFrame implements Serializable,Cloneable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainFrame.this.words.get(MainFrame.this.idx.getIndex()).setNewWord(MainFrame.this.chckbxNewWord.isSelected());
-				//MainFrame.this.freshUI();
+				MainFrame.this.freshUI();
 			}
 		});
 		
@@ -284,8 +284,16 @@ class MainFrame extends JFrame implements Serializable,Cloneable{
 			this.chckbxNewWord.setSelected(false);
 			this.chckbxNewWord.setText("mark unknown words");
 		}
-		this.lbPro.setVisible(chckbxNewWord.isSelected());
+		this.lbPro.setVisible(chckbxShowPro.isSelected());
 	}
-	
+	public void resume(){
+		setVisible(true);
+		addListeners();
+		rdbtnClose.setSelected(false);
+		rdbtn2s.setSelected(false);
+		rdbtn5s.setSelected(false);
+		rdbtn10s.setSelected(false);
+		rdbtnClose.setSelected(true);
+	}
 	
 }

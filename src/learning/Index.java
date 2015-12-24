@@ -7,6 +7,11 @@ public class Index implements Serializable,Cloneable{
 	private long index = 0;
 	private int maxIndex;
 	private int size;
+	
+	public Index(){
+		
+	}
+	
 	public Index(int size){
 		this.size = size;
 		this.maxIndex = size - 1;

@@ -18,14 +18,15 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
-public class FileTools {
+class FileTools {
 	
 	public static List<Word> loadTextFile(File file) throws IOException{
 		List<Word> list = Collections.synchronizedList(new LinkedList<Word>());
 		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), 
-				Charset.forName(getCharSet(file)))); // cause 乱码
+				Charset.forName(getCharSet(file)))); 
 		
-		String line = null;
+		String line;
+		
 		while((line = br.readLine()) != null){
 			line = line.trim();
 			String[] strs = line.split("\t");
@@ -90,7 +91,7 @@ public class FileTools {
 	public static Object loadTempFile(File f) throws FileNotFoundException, IOException, ClassNotFoundException {
 		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
 		MainFrame frame = (MainFrame) ois.readObject();
-		//frame.setVisible(true);
+		frame.setVisible(true);
 		//frame.resume();
 		ois.close();
 		return frame;

@@ -18,7 +18,7 @@ public class ExamFrame extends JFrame{
 	private JPanel contentPane;
 	private JTextField textField;
 	private List<Word> words;
-//	private JLabel lbChinese = new JLabel("中文");
+	private JLabel lbChinese = new JLabel("中文");
 	private Index idx;
 	private int total = 0;
 	private int correct = 0;
@@ -34,9 +34,8 @@ public class ExamFrame extends JFrame{
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		//contentPane.add(lbChinese);
+		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));	
+		contentPane.add(lbChinese);
 		
 		textField = new JTextField();
 		contentPane.add(textField);
@@ -48,7 +47,7 @@ public class ExamFrame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if (textField.getText().toLowerCase().equals(words.get(idx.getIndex()).getWord())) {
+				if (textField.getText().toLowerCase().equals(words.get(idx.getIndex()).getWord().trim().toLowerCase())) {
 					correct++;
 					total++;
 				}else {
@@ -65,7 +64,7 @@ public class ExamFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().toLowerCase().equals(words.get(idx.getIndex()).getWord())) {
+				if (textField.getText().toLowerCase().equals(words.get(idx.getIndex()).getWord().trim().toLowerCase())) {
 					correct++;
 					total++;
 				}else {
@@ -77,13 +76,25 @@ public class ExamFrame extends JFrame{
 		    dispose();  
 		    }		
 		});
-		contentPane.add(btnNext);
+		contentPane.add(btnEnd); //end button
 		setVisible(true);
+		freshUI();
 	
+	}
+	
+	public ExamFrame() {
+	}
+
+	public void freshUI(){
+		lbChinese.setText(words.get(idx.getIndex()).getMeaning());
+		System.out.println(words.get(idx.getIndex()).getMeaning());
+		textField.setText("");
+		
 	}
 	public void showNext() {
 		// TODO Auto-generated method stub
-		idx.plusThenReturn();
+		idx.minusThenReturn();
+		freshUI();
 	}
 
 }

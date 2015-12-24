@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Main {
 	public static void main(String[] args) throws IOException{
+
+		
 		File f =  FileTools.chooseFile();
 		String tempPath = f.getAbsolutePath() + ".temp";
 		File tempFile = new File(tempPath);
@@ -17,9 +19,11 @@ public class Main {
 				//main(args);
 			}
 		}
-			else{
+		else{			
 			List<Word> words = FileTools.loadTextFile(f);
-			new MainFrame(words);//tempFile
+			new MainFrame(words);
+			new Log();
+					
 		}
 	}
 }

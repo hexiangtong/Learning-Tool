@@ -50,6 +50,9 @@ class NewWordFrame extends JFrame {
 		contentPane.add(list, BorderLayout.CENTER);
 		this.setVisible(true);
 	}
+
+	public NewWordFrame() {
+	}
 	
 }
 
